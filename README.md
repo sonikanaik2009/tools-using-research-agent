@@ -1,4 +1,4 @@
-# Tool-using Research Agent
+# Tools-using Research Agent
 
 An AI-powered research agent that searches the web, analyzes relevant sources, and generates source-grounded answers with citations.
 
