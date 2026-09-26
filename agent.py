@@ -32,9 +32,7 @@ Content:
 """
     prompt = f"""
 You are a research assistant.
-
-Answer the user's research question using only the
-web research provided below.
+Answer the user's research question using only the web research provided below.
 
 Research question:
 {question}
@@ -51,13 +49,10 @@ Instructions:
 - Only cite source numbers that actually exist in the provided research.
 - Do not create or invent source numbers.
 - Do not write or invent URLs in the answer.
-- If the provided sources do not contain enough information,
-  clearly say so.
+- If the provided sources do not contain enough information, clearly say so.
 """
     max_retries = 3
-
     for attempt in range(max_retries):
-
         try:
             response = client.models.generate_content(model="gemini-3.5-flash-lite", contents=prompt)
             answer = response.text
@@ -71,25 +66,3 @@ Instructions:
                     "Please try again later."
                 ) from error
 
-
-if __name__ == "__main__":
-
-    question = input("Enter your research question: ")
-
-    try:
-        answer, sources = research(question)
-
-        print("\nANSWER")
-        print("=" * 60)
-        print(answer)
-
-        print("\nSOURCES")
-        print("=" * 60)
-
-        for source in sources:
-            print(f"[{source['id']}] {source['title']}")
-            print(source["url"])
-            print()
-
-    except Exception as error:
-        print(f"\nERROR: {error}")
